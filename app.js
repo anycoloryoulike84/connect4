@@ -120,7 +120,7 @@ function restartGame() {
 
 function updateMove() {
 
-	updateButtons();
+	upDateButtons();
 
 	var winner = getWinner(board);
 
@@ -226,7 +226,10 @@ if (myMove) {
 $(document).ready(function(){
 
 	$('button').click(function(){
-		var cell = $(this).attr("id");
+
+
+		$(this).addClass("aiMove");
+		var cell = $(this).attr("id").appendClass("aiMove");
 		var row = parseInt(cell[1]);
 		var col = parseInt(cell[2]);
 		
@@ -240,7 +243,7 @@ $(document).ready(function(){
 
 	});
 
-	$("#restart").click(restartGame
+	$("#restart").click(restartGame)
 
 });
 
