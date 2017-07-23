@@ -1,0 +1,37 @@
+   
+    .aiMove {
+    background-color:black;
+    border-radius:50%
+    }
+    .playerMove {
+    background-color:red;
+    border-radius:50%
+    }
+
+
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+button {
+    width: 50px;
+    height: 40px;
+    background: #fff;
+    border: 4px solid #000;
+    cursor: pointer;
+    margin: 0px;
+}
+
+td {
+    margin: 0px;
+    padding: 0px;
+}
+
+div {
+    text-align: center;
+}
+
+.wrapper, table {
+    margin: 20px auto;
+}
