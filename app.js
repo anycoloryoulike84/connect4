@@ -153,16 +153,99 @@ function recurseMiniMax(board,player) {
 
 	var winner = getWinner(board);
 
-	// . . . FINISH CODE HERE OUT OF TIME. 1pm
+	if (winner != null) {
+		switch(winner) {
+			case 1: 
+			// CPU Wins
+			return [1,board]
+
+			case 0: 
+			// Player wins
+			return [-1,board]
+			
+			case -1: 
+			// Tie
+			return [0,board]
+		}
+
+	} else {
+
+		var nextVal = null;
+		var nextBoard = null;
+
+		for (var i = 0; i < 4; i++) {
+
+				for (var j = 0; j < 4; j++) { 
+
+					if (board[i][j] == null) {
+						board[i][j] = player;
+						var value = recurseMiniMax(board, !player)[0];
+
+						if ((player &&  (nextVal == null || value  > nextVal )) || (!player &&  (nextVal == null || value < nextVal)) ) {
+							nextBoard = board.map(function(arr) {
+								return arr.slice();
+							
+							});
+							nextVal = value;
+						}
+
+						board[i][j] = null;
+					}
+
+				}
+		}
+
+		return [nextVal,nextBoard];
+
+	}
 
 }
 
 
+function makeMove() {
+	board = miniMaxMove(board);
+	console.log(numNodes);
+	myMove = false;
+	updateMove();
+	
+}
+
+function miniMaxMove(board) {
+	numNodes = 0;
+	return recurseMiniMax(board, true)[1];
+}
 
 
+// Event Handlers
+
+if (myMove) {
+	makeMove
+}
 
 
+$(document).ready(function(){
 
+	$('button').click(function(){
+		var cell = $(this).attr("id");
+		var row = parseInt(cell[1]);
+		var col = parseInt(cell[2]);
+		
+		if (!myMove) {
+			board[row][col] = false;
+			myMove = true;
+			updateMove();
+			makeMove();
+
+		}
+
+	});
+
+	$("#restart").click(restartGame
+
+});
+
+
+updateMove();
 
 
 
